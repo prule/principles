@@ -8,6 +8,7 @@ The backend for real domains. Kotlin always — no Java for new code.
 | Language | **Kotlin** |
 | Framework | **Spring Boot** |
 | Build | **Gradle**, Kotlin DSL, version catalog |
+| Format | **ktfmt** (Java: google-java-format) via Spotless — see `formatting.md` |
 | Persistence | **Spring Data JDBC** |
 | Database | **PostgreSQL** |
 | Migrations | **Flyway**, forward-only |
@@ -23,6 +24,7 @@ No lazy loading, no dirty tracking, no session lifecycle, no N+1 surprises. Load
 - Model the aggregate, not the table. One repository per aggregate root.
 - Use Kotlin properly: `val` by default, data classes for value objects, sealed classes for state and errors, non-nullable types. Never `!!`.
 - Constructor injection only. No `@Autowired` on fields, no field injection.
+- Run `./gradlew spotlessApply`; never hand-format. CI fails on `spotlessCheck` — `formatting.md`.
 - Keep domain code free of Spring annotations. Controllers, config and adapters wear the framework; the domain does not. See `../patterns/hexagonal-architecture.md`.
 - Controllers map DTOs to domain types and delegate. No business logic, and never expose domain entities directly as JSON.
 - `@Transactional` at the use-case boundary, never on a repository method.

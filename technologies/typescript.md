@@ -11,7 +11,7 @@ Anything that runs in Node or a browser is TypeScript. No plain JavaScript, no `
 | Unit tests | **Vitest** |
 | E2E tests | **Playwright**, Screenplay pattern |
 | Lint | **ESLint** (flat config) |
-| Format | **Prettier** |
+| Format | **Prettier**, on commit — see `formatting.md` |
 | Build | **Vite** |
 
 ## Rules for agents
@@ -23,6 +23,7 @@ Anything that runs in Node or a browser is TypeScript. No plain JavaScript, no `
 - Prefer `satisfies` over type annotations when you want inference and checking.
 - Validate external data at the boundary with Zod — API responses, env vars, `localStorage`, message payloads. See `type-contracts.md` and `../patterns/illegal-states-unrepresentable.md`.
 - No default exports except where a framework demands it.
+- Never hand-format. The pre-commit hook and CI handle it — `formatting.md`.
 
 ## Deviate when
 Never, for source. Config files that tooling requires in `.js`/`.mjs` are the only exception.

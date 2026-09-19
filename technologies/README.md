@@ -35,6 +35,7 @@ Where does it run?
 | Backend (complex domain) | Kotlin + Spring Boot + Spring Data JDBC | [spring-boot-kotlin.md](spring-boot-kotlin.md) |
 | Hosting | Cloudflare Pages + Workers | [cloudflare.md](cloudflare.md) |
 | API contracts | **Contract first** — OpenAPI written before code, types generated | [type-contracts.md](type-contracts.md) |
+| Formatting | Prettier · ktfmt · google-java-format, on commit | [formatting.md](formatting.md) |
 | Repo layout | pnpm workspace monorepo | [repo-structure.md](repo-structure.md) |
 | Native shells | PWA first; Capacitor or Tauri only on demand | [packaging.md](packaging.md) |
 
@@ -50,6 +51,7 @@ Where does it run?
 ## Standing rules
 
 - **TypeScript, not JavaScript.** Everywhere, no exceptions in source.
+- **Formatting is automated**, applied by a pre-commit hook and enforced in CI. Never hand-format, never debate style.
 - **Pin every version.** Node in `.node-version`, pnpm in `packageManager`, dependencies exact. Reproducible builds are not optional.
 - **Contract first for REST.** The OpenAPI spec is written and reviewed before the implementation; server interfaces and clients are generated from it, never the other way round.
 - **Generate types, never hand-write them** across a boundary that owns a schema. Validate at runtime with Zod anyway.
