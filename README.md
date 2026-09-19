@@ -19,6 +19,12 @@ Read the individual file when a decision turns on that principle. The one-liners
 | [Measure First](measure-first.md) | No optimisation without a number, before and after. |
 | [Least Privilege](least-privilege.md) | Minimum access, minimum scope, minimum lifetime. Default deny. |
 
+## Patterns
+
+[patterns/](patterns/README.md) documents the architectural and code-level patterns used here — DDD, hexagonal architecture, testing strategy, and the distributed-systems set.
+
+The distinction matters: **principles always apply; patterns apply only when the problem has the shape they solve.** Reaching for a pattern the problem does not call for violates KISS and YAGNI. Each pattern file says when not to use it.
+
 ## Resolving conflicts
 
 These principles pull against each other. Precedence when they clash:
