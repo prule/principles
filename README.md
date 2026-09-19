@@ -25,6 +25,12 @@ Read the individual file when a decision turns on that principle. The one-liners
 
 The distinction matters: **principles always apply; patterns apply only when the problem has the shape they solve.** Reaching for a pattern the problem does not call for violates KISS and YAGNI. Each pattern file says when not to use it.
 
+## Technologies
+
+[technologies/](technologies/README.md) documents the preferred stack — TypeScript everywhere, React PWAs, Supabase or Kotlin/Spring Boot, Cloudflare.
+
+Where principles are universal and patterns are conditional, these are **chosen defaults**. Deviate only for a stated reason, and record it.
+
 ## Resolving conflicts
 
 These principles pull against each other. Precedence when they clash:
