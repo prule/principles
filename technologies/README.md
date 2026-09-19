@@ -32,7 +32,7 @@ Where does it run?
 | Backend (default) | Supabase, RLS on every table | [supabase.md](supabase.md) |
 | Backend (complex domain) | Kotlin + Spring Boot + Spring Data JDBC | [spring-boot-kotlin.md](spring-boot-kotlin.md) |
 | Hosting | Cloudflare Pages + Workers | [cloudflare.md](cloudflare.md) |
-| Type safety across boundaries | Generate, then validate with Zod | [type-contracts.md](type-contracts.md) |
+| API contracts | **Contract first** — OpenAPI written before code, types generated | [type-contracts.md](type-contracts.md) |
 | Repo layout | pnpm workspace monorepo | [repo-structure.md](repo-structure.md) |
 | Native shells | PWA first; Capacitor or Tauri only on demand | [packaging.md](packaging.md) |
 
@@ -41,7 +41,7 @@ Where does it run?
 | Layer | Tools |
 |---|---|
 | TypeScript unit | Vitest |
-| Browser e2e | Playwright |
+| Browser e2e | Playwright, **Screenplay pattern** ([../patterns/screenplay.md](../patterns/screenplay.md)) |
 | Kotlin unit | JUnit 5 + MockK |
 | Kotlin integration | Testcontainers (real Postgres, never H2) |
 
@@ -49,7 +49,8 @@ Where does it run?
 
 - **TypeScript, not JavaScript.** Everywhere, no exceptions in source.
 - **Pin every version.** Node in `.node-version`, pnpm in `packageManager`, dependencies exact. Reproducible builds are not optional.
-- **Generate types, never hand-write them** across a boundary that owns a schema.
+- **Contract first for REST.** The OpenAPI spec is written and reviewed before the implementation; server interfaces and clients are generated from it, never the other way round.
+- **Generate types, never hand-write them** across a boundary that owns a schema. Validate at runtime with Zod anyway.
 - **Cross-platform means PWA first.** A native shell is a cost, taken deliberately.
 - **Prefer the lower rung.** Supabase before Spring Boot, PWA before Capacitor, plain pnpm before Turborepo. Escalate on evidence, not anticipation — `../kiss.md`, `../yagni.md`, `../measure-first.md`.
 

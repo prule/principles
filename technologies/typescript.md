@@ -9,7 +9,7 @@ Anything that runs in Node or a browser is TypeScript. No plain JavaScript, no `
 | Node version | Managed by **fnm**, pinned in `.node-version` |
 | Package manager | **pnpm** (standalone install), pinned via `packageManager` in `package.json` |
 | Unit tests | **Vitest** |
-| E2E tests | **Playwright** |
+| E2E tests | **Playwright**, Screenplay pattern |
 | Lint | **ESLint** (flat config) |
 | Format | **Prettier** |
 | Build | **Vite** |

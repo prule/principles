@@ -5,7 +5,7 @@ Many fast tests on logic, few slow tests on wiring. Optimise for confidence per 
 ## The shape
 - **Unit** (most) — pure logic, no I/O, milliseconds. Target the functional core.
 - **Integration** (some) — one adapter against real infrastructure: repository against a real database, client against a stubbed HTTP server.
-- **End-to-end** (few) — a handful of critical user journeys through the whole stack.
+- **End-to-end** (few) — a handful of critical user journeys through the whole stack. Structure these with `screenplay.md`.
 
 If the pyramid is inverted, the architecture is usually the problem, not the tests: logic entangled with I/O cannot be tested any other way. Fix the seam (see `hexagonal-architecture.md`).
 

@@ -24,6 +24,7 @@ Adopting a pattern the problem does not call for is itself a violation of `../ki
 | [Testing Strategy](testing-strategy.md) | Always. Many fast logic tests, few slow wiring tests. |
 | [Test Doubles](test-doubles.md) | Choosing a stand-in. Prefer fakes; mock only interactions. |
 | [Contract Tests](contract-tests.md) | Any fake exists, or services depend on each other. |
+| [Screenplay](screenplay.md) | Writing end-to-end tests. Default over Page Objects. |
 
 ## Distributed / async
 | Pattern | Use it when |

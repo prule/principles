@@ -13,7 +13,8 @@ The backend for real domains. Kotlin always — no Java for new code.
 | Migrations | **Flyway**, forward-only |
 | Unit tests | **JUnit 5** + **MockK** |
 | Integration tests | **Testcontainers** (real Postgres) |
-| API docs | **springdoc-openapi** |
+| API contract | **OpenAPI spec, hand-written first** |
+| Server stubs | **openapi-generator** (`kotlin-spring`, `interfaceOnly`) |
 
 ## Why Spring Data JDBC over JPA
 No lazy loading, no dirty tracking, no session lifecycle, no N+1 surprises. Loads and saves whole aggregates explicitly, which maps directly onto `../patterns/domain-driven-design.md` and `../patterns/repository.md`. Choose JPA only for an existing codebase that already uses it.
@@ -29,7 +30,7 @@ No lazy loading, no dirty tracking, no session lifecycle, no N+1 surprises. Load
 - Migrations are forward-only and immutable once merged. Never edit an applied migration.
 - Structured JSON logging with a correlation ID per request. Never log secrets, tokens or personal data.
 - Configuration and secrets from the environment, validated at startup with `@ConfigurationProperties`. Fail to boot on anything missing — see `../fail-fast.md`.
-- Expose OpenAPI from the code; the TS client is generated from it (see `type-contracts.md`).
+- **Contract first**: write `openapi.yaml`, generate the server interfaces, implement them. Never annotate controllers and let a spec fall out of the code. See `type-contracts.md`.
 
 ## Smells
-`!!`, `lateinit var` outside tests, `@Autowired` fields, entities returned from controllers, H2 in tests, business logic in a `@Service` over an anemic model, an edited migration, `catch (e: Exception) {}`.
+`!!`, `lateinit var` outside tests, `@Autowired` fields, entities returned from controllers, an OpenAPI spec generated from annotations, H2 in tests, business logic in a `@Service` over an anemic model, an edited migration, `catch (e: Exception) {}`.

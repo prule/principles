@@ -1,24 +1,44 @@
-# Type Contracts Across Boundaries
+# Type Contracts — Contract First
 
-Types are generated from whatever owns the truth, never written twice by hand. Schema drift should be a build failure, not a production incident.
+**The OpenAPI specification is the source of truth, written before the implementation.** Server interfaces and client code are generated from it. Nobody hand-writes a type that crosses a service boundary.
 
-## Generation sources
-| Boundary | Source of truth | Generated |
-|---|---|---|
-| Spring Boot → TS client | springdoc OpenAPI spec | TS types/client via `openapi-typescript` |
-| Supabase → TS | Database schema | `supabase gen types typescript` |
-| Database → Kotlin | Flyway migrations | Aggregate mappings, checked by Testcontainers tests |
+## The flow
+```
+openapi.yaml  (hand-written, reviewed, versioned in the repo)
+      │
+      ├─→ openapi-generator (kotlin-spring, interfaceOnly)  →  server interfaces to implement
+      ├─→ openapi-typescript                                →  TS client types
+      └─→ Prism                                             →  mock server, available before the API exists
+```
+
+## Why contract first
+The contract is agreed and reviewable before either side is built. Frontend and backend proceed in parallel against a mock. The spec is a design artefact discussed in a pull request, not an accident of whatever the controller happened to return.
+
+Code-first (annotating Kotlin and letting springdoc emit a spec) inverts this: the API becomes a side effect of the implementation, breaking changes ship unnoticed, and the client waits for the server.
 
 ## Rules for agents
-- Generated files are committed and regenerated in CI. If CI regenerates and the diff is non-empty, the build fails — that is the drift alarm.
+- Write or change `openapi.yaml` **first**. Implementation follows the contract; the contract never documents the implementation after the fact.
+- Generate the Kotlin server interfaces (`interfaceOnly: true`) and implement them. If the controller stops matching the spec, it stops compiling.
+- Generated code is committed and regenerated in CI. A non-empty diff after regeneration fails the build — that is the drift alarm.
 - Never hand-edit a generated file. Never hand-write a type that could be generated.
-- Generation gives you *compile-time* safety only. Runtime data still needs validating: parse every API response, env var, stored blob and message payload with **Zod** at the boundary, then pass the parsed type inward. See `../patterns/illegal-states-unrepresentable.md`.
-- Validate once, at the edge. Do not re-validate the same value at every layer.
-- Version the API and add fields additively. Do not break a client to tidy a name.
-- The generated client belongs in an adapter, not in components or domain code — `../patterns/anti-corruption-layer.md`.
+- Lint the spec (**Spectral**) and check every change for breaking changes (**oasdiff**) in CI. A breaking change must be a new version, not a merge.
+- Keep the generated client in an adapter, never in components or domain code — `../patterns/anti-corruption-layer.md`.
+- Add fields additively. Do not break a client to tidy a name.
+
+## Other boundaries
+| Boundary | Source of truth | Generated |
+|---|---|---|
+| REST API (Spring Boot ↔ TS) | **`openapi.yaml`** | Kotlin interfaces, TS client, mock server |
+| Supabase → TS | Database schema | `supabase gen types typescript` |
+| Database → Kotlin | Flyway migrations | Aggregate mappings, verified by Testcontainers tests |
+
+Supabase is the exception: PostgREST derives the API from the schema, so the schema *is* the contract. Migrations are then the artefact to review.
+
+## Generation is not validation
+Generated types give compile-time safety only. Runtime data still needs parsing: validate every API response, env var, stored blob and message payload with **Zod** at the boundary, then pass the parsed type inward. Validate once, at the edge — see `../patterns/illegal-states-unrepresentable.md`.
 
 ## Deviate when
 A one-off script or a spike. Say that it is a spike.
 
 ## Smells
-A hand-written interface mirroring a database table, a TS type and a Kotlin data class edited in parallel, `as ApiResponse` on a `fetch` result, a generated file with manual edits, drift discovered by a user.
+A spec generated from annotations after the code was written, a hand-written interface mirroring an API response, a generated file with manual edits, a breaking change merged without a version bump, `as ApiResponse` on a `fetch` result, drift discovered by a user.
