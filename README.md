@@ -7,12 +7,13 @@ Design rules for agents building software. Three tiers, in descending order of a
 | **[Principles](principles/README.md)** | Universal — apply to every decision | 12 files |
 | **[Patterns](patterns/README.md)** | Conditional — apply when the problem has that shape | 14 files |
 | **[Technologies](technologies/README.md)** | Chosen defaults — deviate only for a stated reason | 9 files |
+| **[Documentation](documentation/README.md)** | Standards — how to document what you build | 7 files |
 
-The tiers differ in how binding they are. A principle is never wrong to apply. A pattern applied to the wrong problem is itself a mistake — reaching for DDD on a CRUD app violates KISS and YAGNI, so every pattern file says when *not* to use it. A technology choice is a preference: follow it unless the project records a reason not to.
+The tiers differ in how binding they are. A principle is never wrong to apply. A pattern applied to the wrong problem is itself a mistake — reaching for DDD on a CRUD app violates KISS and YAGNI, so every pattern file says when *not* to use it. A technology choice is a preference: follow it unless the project records a reason not to. Documentation standards apply to whatever you build, whichever stack it uses.
 
 ## For agents
 
-1. **Read the three index files first** — the tables below and in each folder are the working summary. They are short by design.
+1. **Read the four index files first** — the tables below and in each folder are the working summary. They are short by design.
 2. **Open an individual file only when a decision turns on it.** Each is 15–25 lines.
 3. **Follow every tier by default.** If a task conflicts with something here, say so before proceeding rather than silently deviating.
 4. **Cite the rule when you apply it.** "Keeping the domain free of the ORM, per hexagonal-architecture.md" tells the reader which rule is in play and lets them overrule it.
@@ -24,8 +25,9 @@ Follow the engineering constitution in `docs/constitution/`:
 - `principles/README.md` — universal, apply always
 - `patterns/README.md` — conditional, check "when not to use this"
 - `technologies/README.md` — the default stack
+- `documentation/README.md` — what to document, and where
 
-Read the three index files at the start of a task. Open individual
+Read the four index files at the start of a task. Open individual
 files when a decision turns on them. Say so before deviating.
 ```
 
@@ -76,12 +78,27 @@ files when a decision turns on them. Say so before deviating.
 
 Decision tree and the full rules in [technologies/README.md](technologies/README.md).
 
+## Documentation — one question, one home
+
+| Question | Artefact |
+|---|---|
+| What should it do? | [OpenSpec spec](documentation/specs.md) — written before the implementation |
+| Why is it built this way? | [ADR](documentation/adr.md) — Nygard format, immutable once accepted |
+| How do I run it? | [Project README](documentation/project-readme.md) |
+| What changed? | [Generated changelog](documentation/commits.md) — Conventional Commits |
+| Why is this line like this? | [A comment](documentation/code-comments.md) — why, never what |
+| How do the parts fit? | [Mermaid](documentation/diagrams.md) — diagrams as code |
+| How should an agent work here? | [Project CLAUDE.md](documentation/agent-context.md) |
+
+Full rules in [documentation/README.md](documentation/README.md).
+
 ## Repository layout
 
 ```
 principles/    12 files — universal rules
 patterns/      14 files — conditional designs, each with "when not to use this"
 technologies/  9 files — the chosen stack, with a decision tree
+documentation/ 7 files — what to document and where it lives
 ```
 
 Every file follows the same shape: a one-line definition, imperative **Rules for agents**, a **counterweight** section naming the rule's own failure mode, and **Smells** for recognising violations in existing code.
