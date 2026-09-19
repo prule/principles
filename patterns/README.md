@@ -1,8 +1,10 @@
 # Patterns
 
+[← index](../README.md)
+
 Patterns are **conditional**. The files in the parent directory are principles — they apply to every decision. These apply only when the problem has the shape they solve.
 
-Adopting a pattern the problem does not call for is itself a violation of `../kiss.md` and `../yagni.md`. Each file below has a "when not to use this" section. Read it before reaching for the pattern.
+Adopting a pattern the problem does not call for is itself a violation of `../principles/kiss.md` and `../principles/yagni.md`. Each file below has a "when not to use this" section. Read it before reaching for the pattern.
 
 ## Core architecture
 | Pattern | Use it when |

@@ -15,7 +15,7 @@ Separate the model that changes state from the model that answers questions. Wri
 3. **Separate stores** — a denormalised read store updated by events. Only under real read-scale pressure.
 
 ## When not to use this
-Level 3 brings eventual consistency, and the UI must then handle stale reads. Do not take it on without a measured need (see `../measure-first.md`). For most applications, level 1 or 2 is the destination — not a stepping stone.
+Level 3 brings eventual consistency, and the UI must then handle stale reads. Do not take it on without a measured need (see `../principles/measure-first.md`). For most applications, level 1 or 2 is the destination — not a stepping stone.
 
 ## Smells
 A read model rebuilt through aggregates one at a time, `getOrderAndMarkAsViewed()`, event sourcing adopted for a CRUD app, users confused by data that has not appeared yet.

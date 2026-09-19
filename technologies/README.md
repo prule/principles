@@ -1,5 +1,7 @@
 # Technologies
 
+[← index](../README.md)
+
 The preferred stack. Principles are universal and patterns are conditional — **these are chosen defaults**. Follow them unless the project states a reason not to, and when you do deviate, record why.
 
 ## Choosing a stack
@@ -52,7 +54,7 @@ Where does it run?
 - **Contract first for REST.** The OpenAPI spec is written and reviewed before the implementation; server interfaces and clients are generated from it, never the other way round.
 - **Generate types, never hand-write them** across a boundary that owns a schema. Validate at runtime with Zod anyway.
 - **Cross-platform means PWA first.** A native shell is a cost, taken deliberately.
-- **Prefer the lower rung.** Supabase before Spring Boot, PWA before Capacitor, plain pnpm before Turborepo. Escalate on evidence, not anticipation — `../kiss.md`, `../yagni.md`, `../measure-first.md`.
+- **Prefer the lower rung.** Supabase before Spring Boot, PWA before Capacitor, plain pnpm before Turborepo. Escalate on evidence, not anticipation — `../principles/kiss.md`, `../principles/yagni.md`, `../principles/measure-first.md`.
 
 ## Deviating
 

@@ -11,7 +11,7 @@ A record of something meaningful that has happened in the domain. Named in the p
 - Keep handlers independent and idempotent. A handler failing must not roll back the originating action.
 
 ## Why
-Side effects (email, analytics, search indexing, downstream services) attach without touching the core use case — this is `../open-closed.md` at the architecture level.
+Side effects (email, analytics, search indexing, downstream services) attach without touching the core use case — this is `../principles/open-closed.md` at the architecture level.
 
 ## When not to use this
 Do not fire an event for something that must happen synchronously and atomically with the action. If the caller needs the result, call the code directly. Events buy decoupling at the cost of traceability — inside a single module, that trade is usually bad.

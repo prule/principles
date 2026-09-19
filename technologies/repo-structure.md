@@ -23,7 +23,7 @@ repo/
 - `packages/shared` stays pure: types, schemas, pure functions. No React, no Node APIs, no I/O.
 - Dependencies are declared by the package that uses them. Do not rely on hoisting — pnpm's strictness here is a feature.
 - One lockfile, at the root. Always `--frozen-lockfile` in CI.
-- CI runs affected packages: typecheck, lint, unit tests, then e2e. Add Turborepo only when build times actually justify caching — `../measure-first.md`.
+- CI runs affected packages: typecheck, lint, unit tests, then e2e. Add Turborepo only when build times actually justify caching — `../principles/measure-first.md`.
 - Keep the Gradle build self-contained: it must not depend on Node tooling to compile or test.
 
 ## The JVM wrinkle

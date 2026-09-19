@@ -4,7 +4,7 @@ Expected failures belong in the type signature. Unexpected failures should crash
 
 ## The distinction
 - **Expected** — the user typed a bad email, the card was declined, the record is gone. Part of the domain. Model it in the return type: `Result<Order, PaymentDeclined>`, a tagged union, an `Either`.
-- **Unexpected** — a broken invariant, a null that cannot be null, a bug. Throw or panic. Let it reach the top and be logged loudly. See `../fail-fast.md`.
+- **Unexpected** — a broken invariant, a null that cannot be null, a bug. Throw or panic. Let it reach the top and be logged loudly. See `../principles/fail-fast.md`.
 
 ## Rules for agents
 - Enumerate the failure cases a caller must handle; do not hide them behind a generic `Error` or a `null` return.

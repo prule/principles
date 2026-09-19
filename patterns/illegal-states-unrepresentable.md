@@ -15,7 +15,7 @@ Use types and constructors so invalid data cannot be built. The compiler and the
 `Pending | Shipped(at) | Cancelled(at, reason)` does not.
 
 ## Payoff
-Whole classes of test and defensive check disappear because the state cannot occur. This is `../fail-fast.md` moved from runtime to compile time.
+Whole classes of test and defensive check disappear because the state cannot occur. This is `../principles/fail-fast.md` moved from runtime to compile time.
 
 ## When not to use this
 Do not fight a weakly-typed language into knots. Where the type system will not carry it, enforce in the constructor and document the invariant.

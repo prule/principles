@@ -29,7 +29,7 @@ No lazy loading, no dirty tracking, no session lifecycle, no N+1 surprises. Load
 - Integration tests use Testcontainers against real Postgres. No H2 — it lies about behaviour your production database has.
 - Migrations are forward-only and immutable once merged. Never edit an applied migration.
 - Structured JSON logging with a correlation ID per request. Never log secrets, tokens or personal data.
-- Configuration and secrets from the environment, validated at startup with `@ConfigurationProperties`. Fail to boot on anything missing — see `../fail-fast.md`.
+- Configuration and secrets from the environment, validated at startup with `@ConfigurationProperties`. Fail to boot on anything missing — see `../principles/fail-fast.md`.
 - **Contract first**: write `openapi.yaml`, generate the server interfaces, implement them. Never annotate controllers and let a spec fall out of the code. See `type-contracts.md`.
 
 ## Smells

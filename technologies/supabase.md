@@ -9,7 +9,7 @@ The app is genuinely CRUD plus auth, realtime and file storage — the logic liv
 Real business invariants must be enforced server-side; there is batch or scheduled work; heavy third-party integration; complex multi-step transactions; or the domain model needs somewhere to live. See `spring-boot-kotlin.md`.
 
 ## Rules for agents
-- **Row Level Security on every table, from the first migration.** No exceptions, no "add it later". This is `../least-privilege.md` and it is the entire security model.
+- **Row Level Security on every table, from the first migration.** No exceptions, no "add it later". This is `../principles/least-privilege.md` and it is the entire security model.
 - Write a test per policy that proves another user *cannot* read or write the row. Untested RLS is assumed broken.
 - The `anon` key is public and belongs in client code. The `service_role` key bypasses RLS entirely — it must never reach the browser, a client bundle, or version control.
 - Generate types: `supabase gen types typescript` in CI, committed. Never hand-write table types.

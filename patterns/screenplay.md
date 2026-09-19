@@ -19,9 +19,9 @@ expect(await actor.asks(TheOrder.confirmationNumber())).toBeDefined()
 ```
 
 ## Why not Page Objects
-Page objects grow into hundreds-of-line classes that mix locators, navigation and business logic — a direct violation of `../srp.md`. They are organised around *pages*, so a journey crossing five pages is stitched together by the test, and reuse means inheritance.
+Page objects grow into hundreds-of-line classes that mix locators, navigation and business logic — a direct violation of `../principles/srp.md`. They are organised around *pages*, so a journey crossing five pages is stitched together by the test, and reuse means inheritance.
 
-Screenplay separates the concerns: locators in interactions, meaning in tasks, intent in the test. Tasks compose into bigger tasks (`../composition.md`), and a UI change touches one interaction rather than every test that walked through it.
+Screenplay separates the concerns: locators in interactions, meaning in tasks, intent in the test. Tasks compose into bigger tasks (`../principles/composition.md`), and a UI change touches one interaction rather than every test that walked through it.
 
 ## Rules for agents
 - The test body contains tasks and questions only. No locators, no `page.` calls, no waits.
@@ -44,7 +44,7 @@ interface Question<T> { answeredBy(actor: Actor): Promise<T> }
 Start hand-rolled; adopt Serenity/JS when its reporting earns its cost.
 
 ## When not to use this
-A single throwaway smoke test does not need the ceremony. Below roughly a dozen e2e tests, plain Playwright with good helpers is honest. Adopt Screenplay once journeys start repeating across tests — the same trigger as `../dry.md`.
+A single throwaway smoke test does not need the ceremony. Below roughly a dozen e2e tests, plain Playwright with good helpers is honest. Adopt Screenplay once journeys start repeating across tests — the same trigger as `../principles/dry.md`.
 
 ## Smells
 `page.click('#submit')` in a test, a `LoginPage` class with twenty methods, tasks named after buttons, `waitForTimeout`, tests that must run in order, a selector change breaking thirty tests.

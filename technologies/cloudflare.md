@@ -15,7 +15,7 @@ Workers is a V8 isolate runtime — no JVM, no threads, no long-lived processes.
 
 ## Rules for agents
 - Configuration lives in `wrangler.jsonc`, committed. Secrets go in via `wrangler secret` or CI — never in the config file, never in the repo.
-- Separate Workers, bindings and credentials per environment. No shared production credentials — `../least-privilege.md`.
+- Separate Workers, bindings and credentials per environment. No shared production credentials — `../principles/least-privilege.md`.
 - Bindings, not SDK clients with keys: bind the resource and let the platform authorise.
 - Mind the Workers execution model: no filesystem, no Node built-ins unless `nodejs_compat` is on, CPU-time limits, and no state between requests. Use Durable Objects when coordination is genuinely needed.
 - Never leave a floating promise — use `waitUntil` for work that must outlive the response.
