@@ -11,14 +11,22 @@ Design rules for agents building software. Three tiers, in descending order of a
 
 The tiers differ in how binding they are. A principle is never wrong to apply. A pattern applied to the wrong problem is itself a mistake — reaching for DDD on a CRUD app violates KISS and YAGNI, so every pattern file says when *not* to use it. A technology choice is a preference: follow it unless the project records a reason not to. Documentation standards apply to whatever you build, whichever stack it uses.
 
-## For agents
+## Using this in a project
 
-1. **Read the four index files first** — the tables below and in each folder are the working summary. They are short by design.
-2. **Open an individual file only when a decision turns on it.** Each is 15–25 lines.
-3. **Follow every tier by default.** If a task conflicts with something here, say so before proceeding rather than silently deviating.
-4. **Cite the rule when you apply it.** "Keeping the domain free of the ORM, per hexagonal-architecture.md" tells the reader which rule is in play and lets them overrule it.
+Vendor it with **git subtree**. The files land in the repo, so they are always present — a clone needs no extra flags, CI needs no extra configuration, and an agent cannot silently proceed without them.
 
-Add this to the consuming project's `CLAUDE.md`:
+```bash
+git remote add constitution git@github.com:prule/principles.git
+git subtree add --prefix docs/constitution constitution main --squash
+```
+
+Pull updates later:
+
+```bash
+git subtree pull --prefix docs/constitution constitution main --squash
+```
+
+Then add to the project's `CLAUDE.md`:
 
 ```markdown
 Follow the engineering constitution in `docs/constitution/`:
@@ -29,7 +37,21 @@ Follow the engineering constitution in `docs/constitution/`:
 
 Read the four index files at the start of a task. Open individual
 files when a decision turns on them. Say so before deviating.
+
+`docs/constitution/` is vendored — never edit it here. Change it
+upstream and pull.
 ```
+
+**Never edit the vendored copy.** A local edit drifts from upstream and, worse, lets an inconvenient rule be quietly softened in the one place nobody reviews. Change it upstream, then pull. Add a CODEOWNERS entry on the path if the project enforces review.
+
+Other installation options, with trade-offs, are in [INSTALL.md](INSTALL.md).
+
+## For agents
+
+1. **Read the four index files first** — the tables below and in each folder are the working summary. They are short by design.
+2. **Open an individual file only when a decision turns on it.** Each is 15–25 lines.
+3. **Follow every tier by default.** If a task conflicts with something here, say so before proceeding rather than silently deviating.
+4. **Cite the rule when you apply it.** "Keeping the domain free of the ORM, per hexagonal-architecture.md" tells the reader which rule is in play and lets them overrule it.
 
 ## Principles — always
 
