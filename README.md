@@ -7,7 +7,7 @@ Design rules for agents building software. Three tiers, in descending order of a
 | **[Principles](principles/README.md)** | Universal — apply to every decision | 12 files |
 | **[Patterns](patterns/README.md)** | Conditional — apply when the problem has that shape | 14 files |
 | **[Technologies](technologies/README.md)** | Chosen defaults — deviate only for a stated reason | 10 files |
-| **[Documentation](documentation/README.md)** | Standards — how to document what you build | 7 files |
+| **[Documentation](documentation/README.md)** | Standards — how to document what you build | 8 files |
 
 The tiers differ in how binding they are. A principle is never wrong to apply. A pattern applied to the wrong problem is itself a mistake — reaching for DDD on a CRUD app violates KISS and YAGNI, so every pattern file says when *not* to use it. A technology choice is a preference: follow it unless the project records a reason not to. Documentation standards apply to whatever you build, whichever stack it uses.
 
@@ -106,6 +106,7 @@ Decision tree and the full rules in [technologies/README.md](technologies/README
 | Question | Artefact |
 |---|---|
 | What should it do? | [OpenSpec spec](documentation/specs.md) — written before the implementation |
+| What is true of *this* product? | [openspec/config.yaml](documentation/openspec-config.md) |
 | Why is it built this way? | [ADR](documentation/adr.md) — Nygard format, immutable once accepted |
 | How do I run it? | [Project README](documentation/project-readme.md) |
 | What changed? | [Generated changelog](documentation/commits.md) — Conventional Commits |
@@ -121,7 +122,7 @@ Full rules in [documentation/README.md](documentation/README.md).
 principles/    12 files — universal rules
 patterns/      14 files — conditional designs, each with "when not to use this"
 technologies/  10 files — the chosen stack, with a decision tree
-documentation/ 7 files — what to document and where it lives
+documentation/ 8 files — what to document and where it lives
 ```
 
 Every file follows the same shape: a one-line definition, imperative **Rules for agents**, a **counterweight** section naming the rule's own failure mode, and **Smells** for recognising violations in existing code.
