@@ -33,6 +33,8 @@ Where does it run?
 | Offline | Dexie + Workbox, hand-rolled sync | [local-first.md](local-first.md) |
 | Backend (default) | Supabase, RLS on every table | [supabase.md](supabase.md) |
 | Backend (complex domain) | Kotlin + Spring Boot + Spring Data JDBC | [spring-boot-kotlin.md](spring-boot-kotlin.md) |
+| REST API conventions | HATEOAS, Problem Details, pagination, idempotency | [spring-boot-api.md](spring-boot-api.md) |
+| Running a service | Actuator, Micrometer/OTel, timeouts, OAuth2 | [spring-boot-operations.md](spring-boot-operations.md) |
 | Hosting | Cloudflare Pages + Workers | [cloudflare.md](cloudflare.md) |
 | API contracts | **Contract first** — OpenAPI written before code, types generated | [type-contracts.md](type-contracts.md) |
 | Formatting | Prettier · ktfmt · google-java-format, on commit | [formatting.md](formatting.md) |
