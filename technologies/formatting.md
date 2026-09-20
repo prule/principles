@@ -30,11 +30,13 @@ Git's native `core.hooksPath`, committed to the repo. Not Husky — that is a No
 set -e
 staged=$(git diff --cached --name-only --diff-filter=ACMR)
 [ -z "$staged" ] && exit 0
-./run format
+echo "$staged" | xargs pnpm exec prettier --write --ignore-unknown --log-level warn --
 echo "$staged" | xargs git add --
 ```
 
-Register it in `./run setup` so every clone gets it: `git config core.hooksPath .githooks`
+Format **only the staged files** — it is fast, quiet, and `.prettierignore` still applies. For a JVM project, call `./gradlew spotlessApply` instead (Spotless has no cheap per-file mode).
+
+Register it in `./run setup` so every clone gets it: `git config core.hooksPath .githooks`. `core.hooksPath` is local git config and is **not** carried by a clone, so a project without a setup script must document this as a once-per-clone step.
 
 ## Rules for agents
 - **Never hand-format, and never argue about style.** Run the formatter and move on. Do not leave formatting comments in review.
